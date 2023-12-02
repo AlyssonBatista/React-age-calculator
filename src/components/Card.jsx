@@ -7,7 +7,7 @@ const Card = () => {
   const [day,setDay] = React.useState('')
   const [month,setMonth] = React.useState('')
   const [year,setYear] = React.useState('')
-
+  const [linha, setLinha] =React.useState('--')
   const [visibility, setVisibility] = React.useState(true);
 
 
@@ -28,13 +28,13 @@ const Card = () => {
     }
  
    const dias = () => {
-    return Number(getCurrentDate('year')) - year
+    return getCurrentDate('year') - year
    }
    const meses = () => {
-    return Number(getCurrentDate('month')) - month
+    return getCurrentDate('month') - month
    }
    const anos = () => {
-    return  Number(getCurrentDate('day')) - day < 0 ? (Number(getCurrentDate('day')) - day)* -1 : Number(getCurrentDate('day')) - day  
+    return  getCurrentDate('day') - day < 0 ? (Number(getCurrentDate('day')) - day)* -1 : Number(getCurrentDate('day')) - day  
    }
    
 
@@ -50,17 +50,17 @@ const Card = () => {
     <button
       type="submit"
       onClick={() => {
-        if (visibility) {
-          setVisibility(false);
-        } 
-        if (!visibility) {
+        if (day && month && year === '') {
           setVisibility(true);
+        } 
+        if (day && month && year !== '') {
+          setVisibility(false);
         }
       }}>seta</button>
  
-      {visibility && <p>{dias()} years </p>}
-      {visibility && <p>{meses()} months</p>}
-      {visibility && <p>{anos()} days</p>}
+      <p>{ !visibility && dias()} { visibility && linha} years </p>
+      <p>{ !visibility && meses()} { visibility && linha} months</p>
+      <p>{ !visibility && anos()} { visibility && linha} days</p>
     
     </div>
   )

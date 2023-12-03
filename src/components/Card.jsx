@@ -7,8 +7,9 @@ const Card = () => {
   const [day,setDay] = React.useState('')
   const [month,setMonth] = React.useState('')
   const [year,setYear] = React.useState('')
-  const [linha, setLinha] =React.useState('--')
   const [visibility, setVisibility] = React.useState(true);
+  const [error,setError] = React.useState(null)
+  const linha = '--'
 
 
   function getCurrentDate(data){ // ess função retorna o dia ou o mês ou o ano
@@ -37,6 +38,12 @@ const Card = () => {
     return  getCurrentDate('day') - day < 0 ? (Number(getCurrentDate('day')) - day)* -1 : Number(getCurrentDate('day')) - day  
    }
     
+   const validateDia = (dia) =>{
+      if(dia.lenght === 0){
+        setError('Preencha um valor')
+        return false;
+      } else if ()
+   }
    const handleDayChange = event => {
       return setDay(event.target.value);
   };

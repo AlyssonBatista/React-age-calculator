@@ -42,9 +42,9 @@ const Card = () => {
   
   return (
     <div>
-     <Input value={day} estado={(e) => setDay(e.target.value)}  place='DD' label='DAY' />
-     <Input value={month} estado={(e) => setMonth(e.target.value)}  place='MM' label='MONTH' />
-     <Input value={year} estado={(e) => setYear(e.target.value)}  place='YYYY' label='YEAR' />
+     <Input id='dia' value={day} estado={(e) => setDay(e.target.value)}  place='DD' label='DAY' />
+     <Input id='mes' value={month} estado={(e) => setMonth(e.target.value)}  place='MM' label='MONTH' />
+     <Input min='1' max='12' id='ano' value={year} estado={(e) => setYear(e.target.value)}  place='YYYY' label='YEAR' />
   
       
     <button

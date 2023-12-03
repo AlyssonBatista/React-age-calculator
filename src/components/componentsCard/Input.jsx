@@ -6,7 +6,7 @@ const Input = (props) => {
     <div>
        <div>
         <label htmlFor={props.id}>{props.label}</label>
-        <input  value={props.states} id={props.id} type='number'  placeholder={props.place} onChange={props.estado} required  />
+        <input id={props.id} type='text' maxLength={props.tam}   placeholder={props.place} onChange={props.estado}   required  />
       </div>
     </div>
   )

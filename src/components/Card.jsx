@@ -36,15 +36,26 @@ const Card = () => {
    const anos = () => {
     return  getCurrentDate('day') - day < 0 ? (Number(getCurrentDate('day')) - day)* -1 : Number(getCurrentDate('day')) - day  
    }
-   
+    
+   const handleDayChange = event => {
+      return setDay(event.target.value);
+  };
+
+  const handleMonthChange = event => {
+      return setMonth(event.target.value);
+  };
+
+  const handleYearChange = event => {
+     return setYear(event.target.value);
+  };
 
   
   
   return (
     <div>
-     <Input id='dia' value={day} estado={(e) => setDay(e.target.value)}  place='DD' label='DAY' />
-     <Input id='mes' value={month} estado={(e) => setMonth(e.target.value)}  place='MM' label='MONTH' />
-     <Input min='1' max='12' id='ano' value={year} estado={(e) => setYear(e.target.value)}  place='YYYY' label='YEAR' />
+     <Input  tam='2'  id='dia' value={day}   estado={handleDayChange}    place='DD'   label='DAY' />
+     <Input  tam='2'  id='mes' value={month} estado={handleMonthChange}  place='MM'   label='MONTH' />
+     <Input  tam='4'  id='ano' value={year}  estado={handleYearChange}   place='YYYY' label='YEAR' />
   
       
     <button

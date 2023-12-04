@@ -12,7 +12,7 @@ const Card = () => {
   const [errorDay,setErrorDay] = React.useState(null)
   const [errorMes,setErrorMes] = React.useState(null)
   const [errorAno,setErrorAno] = React.useState(null)
-  const linha = '--'
+
 
 
   function getCurrentDate(data){ // ess função retorna o dia ou o mês ou o ano
@@ -71,7 +71,7 @@ const validateAno = (ano) =>{
 if(ano.length === 0){
     setErrorAno('Preencha um valor')
     return false;
-  } else if (!/^([1-9]\d{0,3}|1\d{3}|20[0-2]\d|2023)$/.test(ano)){
+  } else if (!/^([1-9]\d{0,3}|1\d{3}|20[0-2]\d)$/.test(ano)){
     setErrorAno('Preencha um ano válido')
     return false;
   }else{
@@ -123,17 +123,19 @@ const handleYearChange = event => {
     <button
       type="submit"
       onClick={() => {
-        if (day && month && year === '' && errorDay ) {
+        if (day && month && year === '') {
           setVisibility(true);
         } 
         if (day && month && year !== '') {
-          setVisibility(false);
+          if(day && month && year > 0 && day && month && year <= 999999999  ){
+            setVisibility(false);
+          }
         }
       }}>seta</button>
  
-      <p>{ !visibility && dias()} { visibility && linha} years </p>
-      <p>{ !visibility && meses()} { visibility && linha} months</p>
-      <p>{ !visibility && anos()} { visibility && linha} days</p>
+      <p>{ !visibility && dias()} { visibility && '--'} years </p>
+      <p>{ !visibility && meses()} { visibility && '--'} months</p>
+      <p>{ !visibility && anos()} { visibility && '--'} days</p>
     
     </div>
   )

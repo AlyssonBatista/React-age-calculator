@@ -1,6 +1,7 @@
 import React from 'react'
 import Input from './componentsCard/Input'
-// import Botao from './componentsCard/Botao'
+ 
+ 
 
 const Card = () => {
 
@@ -8,7 +9,9 @@ const Card = () => {
   const [month,setMonth] = React.useState('')
   const [year,setYear] = React.useState('')
   const [visibility, setVisibility] = React.useState(true);
-  const [error,setError] = React.useState(null)
+  const [errorDay,setErrorDay] = React.useState(null)
+  const [errorMes,setErrorMes] = React.useState(null)
+  const [errorAno,setErrorAno] = React.useState(null)
   const linha = '--'
 
 
@@ -38,37 +41,89 @@ const Card = () => {
     return  getCurrentDate('day') - day < 0 ? (Number(getCurrentDate('day')) - day)* -1 : Number(getCurrentDate('day')) - day  
    }
     
-   const validateDia = (dia) =>{
-      if(dia.lenght === 0){
-        setError('Preencha um valor')
-        return false;
-      } else if ()
-   }
-   const handleDayChange = event => {
-      return setDay(event.target.value);
-  };
+const validateDia = (dia) =>{
+  if(dia.length === 0){
+    setErrorDay('Preencha um valor')
+    return false;
+  } else if (!/^(0?[1-9]|[1-2][0-9]|3[0-1])$/.test(dia)){
+    setErrorDay('Preencha um dia válido')
+    return false;
+  }else{
+    setErrorDay(null)
+    return true;
+  }
+}
 
-  const handleMonthChange = event => {
-      return setMonth(event.target.value);
-  };
+const validateMes = (mes) =>{
+  if(mes.length === 0){
+    setErrorMes('Preencha um valor')
+    return false;
+  } else if (!/^(0?[1-9]|1[0-2])$/.test(mes)){
+    setErrorMes('Preencha um mês válido')
+    return false;
+  }else{
+    setErrorMes(null)
+    return true;
+  }
+}
 
-  const handleYearChange = event => {
-     return setYear(event.target.value);
-  };
+const validateAno = (ano) =>{
+if(ano.length === 0){
+    setErrorAno('Preencha um valor')
+    return false;
+  } else if (!/^([1-9]\d{0,3}|1\d{3}|20[0-2]\d|2023)$/.test(ano)){
+    setErrorAno('Preencha um ano válido')
+    return false;
+  }else{
+    setErrorAno(null)
+    return true;
+  }
+}
+
+function handleBlurDia({target}){
+validateDia(target.value)
+}
+
+function handleBlurMes({target}){
+validateMes(target.value)
+}
+
+function handleBlurAno({target}){
+validateAno(target.value)
+}
+
+const handleDayChange = event => {
+  if(errorDay) validateDia(event.target.value)
+    setDay(event.target.value);
+};
+
+const handleMonthChange = event => {
+  if(errorMes) validateMes(event.target.value)
+    setMonth(event.target.value);
+};
+
+const handleYearChange = event => {
+  if(errorAno) validateAno(event.target.value)
+    setYear(event.target.value);
+};
 
   
   
   return (
     <div>
-     <Input  tam='2'  id='dia' value={day}   estado={handleDayChange}    place='DD'   label='DAY' />
-     <Input  tam='2'  id='mes' value={month} estado={handleMonthChange}  place='MM'   label='MONTH' />
-     <Input  tam='4'  id='ano' value={year}  estado={handleYearChange}   place='YYYY' label='YEAR' />
+     <Input  tam='2'  id='dia' value={day}   estado={handleDayChange}   onBlur={handleBlurDia}  place='DD'   label='DAY' />
+     {errorDay && <p>{errorDay}</p>}
+     <Input  tam='2'  id='mes' value={month} estado={handleMonthChange} onBlur={handleBlurMes}  place='MM'   label='MONTH' />
+     {errorMes && <p>{errorMes}</p>}
+     <Input  tam='4'  id='ano' value={year}  estado={handleYearChange}  onBlur={handleBlurAno}  place='YYYY' label='YEAR' />
+     {errorAno && <p>{errorAno}</p>}
+
   
       
     <button
       type="submit"
       onClick={() => {
-        if (day && month && year === '') {
+        if (day && month && year === '' && errorDay ) {
           setVisibility(true);
         } 
         if (day && month && year !== '') {

@@ -6,7 +6,7 @@ const Input = (props) => {
     <div>
        <div>
         <label htmlFor={props.id}>{props.label}</label>
-        <input id={props.id} type='text' maxLength={props.tam}   placeholder={props.place} onChange={props.estado}   required  />
+        <input id={props.id} type='text' maxLength={props.tam}   placeholder={props.place} onBlur={props.onBlur}onChange={props.estado}   required  />
       </div>
     </div>
   )

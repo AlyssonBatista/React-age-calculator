@@ -17,17 +17,17 @@ const Card = () => {
 
   function getCurrentDate(data){ // ess função retorna o dia ou o mês ou o ano
   let newDate = new Date()
-    let date = newDate.getDate();
-    let month = newDate.getMonth() + 1;
-    let year = newDate.getFullYear();
+    let day2 = newDate.getDate();
+    let month2 = newDate.getMonth() + 1;
+    let year2 = newDate.getFullYear();
 
     switch(data){
       case 'day':
-        return date;
+        return day2;
       case 'month':
-        return month;
+        return month2;
       case 'year':
-        return year
+        return year2
     }
     }
  
@@ -103,12 +103,14 @@ const handleMonthChange = event => {
 };
 
 const handleYearChange = event => {
-  if(errorAno) validateAno(event.target.value)
-    setYear(event.target.value);
+  let anoDeNascimento = event.target.value
+  if(errorAno) validateAno(anoDeNascimento)
+    setYear(anoDeNascimento);
 };
 
-  
-  
+let anoAtual = new Date().getFullYear()
+
+
   return (
     <div>
      <Input  tam='2'  id='dia' value={day}   estado={handleDayChange}   onBlur={handleBlurDia}  place='DD'   label='DAY' />
@@ -127,7 +129,7 @@ const handleYearChange = event => {
           setVisibility(true);
         } 
         if (day && month && year !== '') {
-          if(day && month && year > 0 && day && month && year <= 999999999  ){
+          if(year < anoAtual ){
             setVisibility(false);
           }
         }

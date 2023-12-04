@@ -45,11 +45,16 @@ const validateMes = (mes) =>{
 }
 
 const validateAno = (ano) =>{
+  let anoAtual = new Date().getFullYear()
+
 if(ano.length === 0){
     setErrorAno('Preencha um valor')
     return false;
   } else if (!/^([1-9]\d{0,3}|1\d{3}|20[0-2]\d)$/.test(ano)){
     setErrorAno('Preencha um ano válido')
+    return false;
+  }else if(ano > anoAtual){
+    setErrorAno(`Preencha com um ano menor que ${anoAtual}`)
     return false;
   }else{
     setErrorAno(null)
@@ -108,22 +113,26 @@ function getCurrentDate(data){ // esss função retorna o dia ou o mês ou o ano
 }
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 const handleClickTodos  = () => {
+  let anoAtual = new Date().getFullYear()
 
-    let anos = getCurrentDate('year') - year
-    let yearFinal = setUpdateYear(anos);
-  
-    let meses = getCurrentDate('month') - month
-    let monthFinal = setUpdateMonth(meses);
-  
-    let days = getCurrentDate('day') - day < 0 ? (Number(getCurrentDate('day')) - day)* -1 : Number(getCurrentDate('day')) - day 
-    let dayFinal =  setUpdateDay(days);
+    if ( year <= anoAtual ){
+      let anos = getCurrentDate('year') - year
+      let yearFinal = setUpdateYear(anos);
 
-  return yearFinal,monthFinal,dayFinal;
+      let meses = getCurrentDate('month') - month
+      let monthFinal = setUpdateMonth(meses);
+    
+      let days = getCurrentDate('day') - day < 0 ? (Number(getCurrentDate('day')) - day)* -1 : Number(getCurrentDate('day')) - day 
+      let dayFinal =  setUpdateDay(days);
+
+      return yearFinal,monthFinal,dayFinal;
+    }
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-let anoAtual = new Date().getFullYear()
+
 
 
   return (
@@ -135,17 +144,12 @@ let anoAtual = new Date().getFullYear()
      <Input  tam='4'  id='ano' value={year}  estado={handleYearChange}  onBlur={handleBlurAno}  place='YYYY' label='YEAR' />
      {errorAno && <p>{errorAno}</p>}
 
+    <button type="submit"  onClick={ handleClickTodos  }>seta</button>
+
+    <p> { updateYear !== '' ? updateYear : '--'} years </p>
+    <p> { updateMonth !== ''  ? updateMonth : '--'} months </p>
+    <p> { updateDay !== ''  ? updateDay : '--'} days </p>
   
- 
-      <button type="submit"  onClick={handleClickTodos}>seta</button>
-
-      <p> { updateYear !== '' ? updateYear : '--'} years </p>
-      <p> { updateMonth !== ''  ? updateMonth : '--'} months </p>
-      <p> { updateDay !== ''  ? updateDay : '--'} days </p>
-    
-
-
-    
     </div>
   )
 }

@@ -8,38 +8,34 @@ const Card = () => {
   const [day,setDay] = React.useState('')
   const [month,setMonth] = React.useState('')
   const [year,setYear] = React.useState('')
-  const [visibility, setVisibility] = React.useState(true);
+
+  const [updateDay,setUpdateDay] = React.useState(day)
+  const [updateMonth,setUpdateMonth] = React.useState(month)
+  const [updateYear,setUpdateYear] = React.useState(year)
+   
   const [errorDay,setErrorDay] = React.useState(null)
   const [errorMes,setErrorMes] = React.useState(null)
   const [errorAno,setErrorAno] = React.useState(null)
 
 
 
-  function getCurrentDate(data){ // ess função retorna o dia ou o mês ou o ano
-  let newDate = new Date()
-    let day2 = newDate.getDate();
-    let month2 = newDate.getMonth() + 1;
-    let year2 = newDate.getFullYear();
+function getCurrentDate(data){ // ess função retorna o dia ou o mês ou o ano
+let newDate = new Date()
+  let day2 = newDate.getDate();
+  let month2 = newDate.getMonth() + 1;
+  let year2 = newDate.getFullYear();
 
-    switch(data){
-      case 'day':
-        return day2;
-      case 'month':
-        return month2;
-      case 'year':
-        return year2
-    }
-    }
+  switch(data){
+    case 'day':
+      return day2;
+    case 'month':
+      return month2;
+    case 'year':
+      return year2
+  }
+  }
  
-   const dias = () => {
-    return getCurrentDate('year') - year
-   }
-   const meses = () => {
-    return getCurrentDate('month') - month
-   }
-   const anos = () => {
-    return  getCurrentDate('day') - day < 0 ? (Number(getCurrentDate('day')) - day)* -1 : Number(getCurrentDate('day')) - day  
-   }
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     
 const validateDia = (dia) =>{
   if(dia.length === 0){
@@ -80,6 +76,8 @@ if(ano.length === 0){
   }
 }
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 function handleBlurDia({target}){
 validateDia(target.value)
 }
@@ -91,6 +89,8 @@ validateMes(target.value)
 function handleBlurAno({target}){
 validateAno(target.value)
 }
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 const handleDayChange = event => {
   if(errorDay) validateDia(event.target.value)
@@ -108,6 +108,23 @@ const handleYearChange = event => {
     setYear(anoDeNascimento);
 };
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+const handleClickTodos  = () => {
+
+    let anos = getCurrentDate('year') - year
+    let yearFinal = setUpdateYear(anos);
+  
+    let meses = getCurrentDate('month') - month
+    let monthFinal = setUpdateMonth(meses);
+  
+    let days = getCurrentDate('day') - day < 0 ? (Number(getCurrentDate('day')) - day)* -1 : Number(getCurrentDate('day')) - day 
+    let dayFinal =  setUpdateDay(days);
+
+  return yearFinal,monthFinal,dayFinal;
+}
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 let anoAtual = new Date().getFullYear()
 
 
@@ -121,23 +138,15 @@ let anoAtual = new Date().getFullYear()
      {errorAno && <p>{errorAno}</p>}
 
   
-      
-    <button
-      type="submit"
-      onClick={() => {
-        if (day && month && year === '') {
-          setVisibility(true);
-        } 
-        if (day && month && year !== '') {
-          if(year < anoAtual ){
-            setVisibility(false);
-          }
-        }
-      }}>seta</button>
  
-      <p>{ !visibility && dias()} { visibility && '--'} years </p>
-      <p>{ !visibility && meses()} { visibility && '--'} months</p>
-      <p>{ !visibility && anos()} { visibility && '--'} days</p>
+      <button type="submit"  onClick={handleClickTodos}>seta</button>
+
+      <p> { updateYear !== '' ? updateYear : '--'} years </p>
+      <p> { updateMonth !== ''  ? updateMonth : '--'} months </p>
+      <p> { updateDay !== ''  ? updateDay : '--'} days </p>
+    
+
+
     
     </div>
   )

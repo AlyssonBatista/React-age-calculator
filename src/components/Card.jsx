@@ -17,26 +17,7 @@ const Card = () => {
   const [errorMes,setErrorMes] = React.useState(null)
   const [errorAno,setErrorAno] = React.useState(null)
 
-
-
-function getCurrentDate(data){ // ess função retorna o dia ou o mês ou o ano
-let newDate = new Date()
-  let day2 = newDate.getDate();
-  let month2 = newDate.getMonth() + 1;
-  let year2 = newDate.getFullYear();
-
-  switch(data){
-    case 'day':
-      return day2;
-    case 'month':
-      return month2;
-    case 'year':
-      return year2
-  }
-  }
- 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ validando o que o usuário digita no input
 const validateDia = (dia) =>{
   if(dia.length === 0){
     setErrorDay('Preencha um valor')
@@ -76,7 +57,7 @@ if(ano.length === 0){
   }
 }
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 function handleBlurDia({target}){
 validateDia(target.value)
@@ -110,6 +91,23 @@ const handleYearChange = event => {
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+function getCurrentDate(data){ // esss função retorna o dia ou o mês ou o ano
+    let newDate = new Date()
+    let day2 = newDate.getDate();
+    let month2 = newDate.getMonth() + 1;
+    let year2 = newDate.getFullYear();
+
+    switch(data){
+      case 'day':
+        return day2;
+      case 'month':
+        return month2;
+      case 'year':
+        return year2
+    }
+}
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const handleClickTodos  = () => {
 
     let anos = getCurrentDate('year') - year

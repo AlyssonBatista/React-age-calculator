@@ -5,3 +5,10 @@ input[type=text]::-webkit-outer-spin-button {
 appearance: none;
 margin: 0; 
 }
+
+.input-label{
+  display: grid;
+   
+}
+
+ 

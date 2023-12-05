@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from './componentsCard/Input'
+// import './Card.css'
  
  
 
@@ -117,7 +118,7 @@ function getCurrentDate(data){ // esss função retorna o dia ou o mês ou o ano
 const handleClickTodos  = () => {
   let anoAtual = new Date().getFullYear()
 
-    if ( year <= anoAtual ){
+    if ( year <= anoAtual && year !== '' && month !== '' && day !== '' ){
       let anos = getCurrentDate('year') - year
       let yearFinal = setUpdateYear(anos);
 
@@ -136,7 +137,7 @@ const handleClickTodos  = () => {
 
 
   return (
-    <div>
+    <div className='card'>
      <Input  tam='2'  id='dia' value={day}   estado={handleDayChange}   onBlur={handleBlurDia}  place='DD'   label='DAY' />
      {errorDay && <p>{errorDay}</p>}
      <Input  tam='2'  id='mes' value={month} estado={handleMonthChange} onBlur={handleBlurMes}  place='MM'   label='MONTH' />

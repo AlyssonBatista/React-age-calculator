@@ -1,6 +1,6 @@
 import React from 'react'
 import Input from './componentsCard/Input'
-// import './Card.css'
+import './Card.css'
  
  
 
@@ -137,21 +137,33 @@ const handleClickTodos  = () => {
 
 
   return (
-    <div className='card'>
-     <Input  tam='2'  id='dia' value={day}   estado={handleDayChange}   onBlur={handleBlurDia}  place='DD'   label='DAY' />
-     {errorDay && <p>{errorDay}</p>}
-     <Input  tam='2'  id='mes' value={month} estado={handleMonthChange} onBlur={handleBlurMes}  place='MM'   label='MONTH' />
-     {errorMes && <p>{errorMes}</p>}
-     <Input  tam='4'  id='ano' value={year}  estado={handleYearChange}  onBlur={handleBlurAno}  place='YYYY' label='YEAR' />
-     {errorAno && <p>{errorAno}</p>}
-
-    <button type="submit"  onClick={ handleClickTodos  }>seta</button>
-
-    <p> { updateYear !== '' ? updateYear : '--'} years </p>
-    <p> { updateMonth !== ''  ? updateMonth : '--'} months </p>
-    <p> { updateDay !== ''  ? updateDay : '--'} days </p>
   
-    </div>
+        <div className='parent'>
+          <div className='inputs'>
+              <div>        
+                <Input  tam='2'  id='dia' value={day}   estado={handleDayChange}   onBlur={handleBlurDia}  place='DD'   label='DAY' />
+                {errorDay && <p>{errorDay}</p>}
+              </div>
+              <div>
+                <Input  tam='2'  id='mes' value={month} estado={handleMonthChange} onBlur={handleBlurMes}  place='MM'   label='MONTH' />
+                {errorMes && <p>{errorMes}</p>}
+              </div>
+              <div>
+                <Input  tam='4'  id='ano' value={year}  estado={handleYearChange}  onBlur={handleBlurAno}  place='YYYY' label='YEAR' />
+                {errorAno && <p>{errorAno}</p>}
+              </div>
+          </div>
+            
+                
+            <div>
+                <button type="submit"  onClick={ handleClickTodos  }>seta</button>
+                <p> { updateYear !== '' ? updateYear : '--'} years </p>
+                <p> { updateMonth !== ''  ? updateMonth : '--'} months </p>
+                <p> { updateDay !== ''  ? updateDay : '--'} days </p>
+            </div>
+        
+        </div>
+
   )
 }
 

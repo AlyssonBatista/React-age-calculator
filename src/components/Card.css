@@ -1,3 +1,19 @@
-.card{
+.inputs{
   display: flex;
+  justify-content: center;
+  
+}
+button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: white;
+  background-color: #864CFF;
+  border: none;
+}
+
+.parent {
+  display: grid;
+ height: 100vh;
+ margin: 0 auto;
 }

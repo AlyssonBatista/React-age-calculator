@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from './componentsCard/Input'
+import seta from './componentsCard/seta.svg';
 import './Card.css'
  
  
@@ -158,7 +159,7 @@ const handleClickTodos  = () => {
             <div className='saida'>
               <div className='botao'>
                
-                <button  type="submit"  onClick={ handleClickTodos  }>seta</button>
+                <button  type="submit"  onClick={ handleClickTodos  }><img   src={seta} alt="React Logo" /></button>
               </div>
               <div className='show'>
                 <p> { updateYear !== '' ? updateYear : '--'} years </p>

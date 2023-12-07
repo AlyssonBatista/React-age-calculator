@@ -138,28 +138,33 @@ const handleClickTodos  = () => {
 
   return (
   
-        <div className='parent'>
+        <div className='container'>
           <div className='inputs'>
               <div>        
                 <Input  tam='2'  id='dia' value={day}   estado={handleDayChange}   onBlur={handleBlurDia}  place='DD'   label='DAY' />
-                {errorDay && <p>{errorDay}</p>}
+                {errorDay && <p className='info'>{errorDay}</p>}
               </div>
               <div>
                 <Input  tam='2'  id='mes' value={month} estado={handleMonthChange} onBlur={handleBlurMes}  place='MM'   label='MONTH' />
-                {errorMes && <p>{errorMes}</p>}
+                {errorMes && <p className='info'>{errorMes}</p>}
               </div>
               <div>
                 <Input  tam='4'  id='ano' value={year}  estado={handleYearChange}  onBlur={handleBlurAno}  place='YYYY' label='YEAR' />
-                {errorAno && <p>{errorAno}</p>}
+                {errorAno && <p className='info'>{errorAno}</p>}
               </div>
           </div>
             
                 
-            <div>
-                <button type="submit"  onClick={ handleClickTodos  }>seta</button>
+            <div className='saida'>
+              <div className='botao'>
+               
+                <button  type="submit"  onClick={ handleClickTodos  }>seta</button>
+              </div>
+              <div className='show'>
                 <p> { updateYear !== '' ? updateYear : '--'} years </p>
                 <p> { updateMonth !== ''  ? updateMonth : '--'} months </p>
                 <p> { updateDay !== ''  ? updateDay : '--'} days </p>
+              </div>
             </div>
         
         </div>

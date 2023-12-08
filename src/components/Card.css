@@ -94,15 +94,19 @@
    background-color: #FFFFFF;
 
  }
+ .show{
+  font-family: 'Poppins-ExtraBolditalic';
+  margin-left: 50px;
+ }
 
  .cheio {
    color: #8B57FA;
-   font-size: 50px;
+   font-size: 70px;
  }
 
  .vazio {
    color: #8B57FA;
-   font-size: 50px;
+   font-size: 70px;
 
  }
 

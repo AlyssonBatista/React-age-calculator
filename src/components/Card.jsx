@@ -164,8 +164,8 @@ const handleClickTodos  = () => {
              
               <div className='show'>
                 <p className={updateYear !== '' ? 'cheio' : 'vazio'}> { updateYear !== '' ? updateYear : '--'} <span >years</span> </p>
-                <p> { updateMonth !== ''  ? updateMonth : '--'} months </p>
-                <p> { updateDay !== ''  ? updateDay : '--'} days </p>
+                <p className={updateYear !== '' ? 'cheio' : 'vazio'}> { updateMonth !== ''  ? updateMonth : '--'} <span>months</span> </p>
+                <p className={updateYear !== '' ? 'cheio' : 'vazio'}> { updateDay !== ''  ? updateDay : '--'} <span>days</span> </p>
               </div>
             </div>
         

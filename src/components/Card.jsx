@@ -119,7 +119,7 @@ function getCurrentDate(data){ // esss função retorna o dia ou o mês ou o ano
 const handleClickTodos  = () => {
   let anoAtual = new Date().getFullYear()
 
-    if ( year <= anoAtual && year !== '' && month !== '' && day !== '' ){
+    if ( year <= anoAtual && month <= 12 && day <= 31 && year !== '' && month !== '' && day !== '' ){
       let anos = getCurrentDate('year') - year
       let yearFinal = setUpdateYear(anos);
 

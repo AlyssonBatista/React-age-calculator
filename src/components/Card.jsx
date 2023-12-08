@@ -133,6 +133,7 @@ const handleClickTodos  = () => {
     }
 }
 
+console.log(errorDay)
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -142,11 +143,11 @@ const handleClickTodos  = () => {
         <div className='container'>
           <div className='inputs'>
               <div>        
-                <Input  tam='2'  id='dia' value={day}   estado={handleDayChange}   onBlur={handleBlurDia}  place='DD'   label='DAY' />
+                <Input   tam='2'  id='dia' value={day}   estado={handleDayChange}   onBlur={handleBlurDia}  place='DD'   label='DAY' />
                 {errorDay && <p className='info'>{errorDay}</p>}
               </div>
               <div>
-                <Input  tam='2'  id='mes' value={month} estado={handleMonthChange} onBlur={handleBlurMes}  place='MM'   label='MONTH' />
+                <Input   tam='2'  id='mes' value={month} estado={handleMonthChange} onBlur={handleBlurMes}  place='MM'   label='MONTH' />
                 {errorMes && <p className='info'>{errorMes}</p>}
               </div>
               <div>
